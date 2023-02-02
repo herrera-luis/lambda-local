@@ -1,0 +1,25 @@
+version: "3.8"
+
+networks:
+  lambda-local:
+    name: lambda-local
+
+services:
+  lambda-local-service:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      AWS_ACCESS_KEY_ID: "test"
+      AWS_SECRET_ACCESS_KEY: "test"
+      AWS_DEFAULT_REGION: "us-east-1"
+    container_name: lambda-local-service
+    hostname: lambda-local-service
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/src/lambda-local-service:delegated
+      - ./config/dev.yml:/etc/config-service/config.yml
+    networks:
+      - lambda-local
