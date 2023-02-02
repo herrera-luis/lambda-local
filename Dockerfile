@@ -1,7 +1,10 @@
-FROM python:3.8.16-slim
-WORKDIR /module
-COPY . /module/
-ADD aws-lambda-rie /usr/local/bin/aws-lambda-rie
-RUN mkdir -p /opt/extensions
-RUN pip install -r function/requirements.txt
-ENTRYPOINT [ "/module/entry_script.sh" ]
+FROM public.ecr.aws/lambda/python:3.9
+
+COPY function/app.py ${LAMBDA_TASK_ROOT}
+COPY function/requirements.txt .
+
+RUN pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+
+ENV APP_VERSION=1.0.0
+
+CMD [ "app.handler"]
