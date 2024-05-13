@@ -9,5 +9,6 @@ else
 	virtualenv venv
 fi
 source venv/bin/activate
+pip install -r requirements.txt
 cd function
 pip install -r requirements.txt

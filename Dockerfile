@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/python:3.9
+FROM public.ecr.aws/lambda/python:3.12
 
 COPY function/app.py ${LAMBDA_TASK_ROOT}
 COPY function/requirements.txt ${LAMBDA_TASK_ROOT}

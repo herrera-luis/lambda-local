@@ -9,6 +9,6 @@ def handler(event, context):
    "Content-Type": "application/json"
   },
   "body": json.dumps({
-   "Version ": version
+   "Version": version
   })
 }
